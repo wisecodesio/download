@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Her Steady Path - Project Brief</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8f9fa;
+      color: #2d3748;
+      line-height: 1.7;
+      width: 100%;
+      height: 100%;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .brief-wrapper {
+      width: 100%;
+      min-height: 100%;
+      padding: 2rem 1rem;
+      overflow-y: auto;
+    }
+
+    .brief-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      min-height: 100%;
+    }
+
+    .brief-header {
+      background: linear-gradient(135deg, #2d5016 0%, #4a7c2c 100%);
+      color: #ffffff;
+      padding: 3.5rem 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brief-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(218, 165, 32, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      transform: translate(30%, -30%);
+    }
+
+    .brief-header h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem 0;
+      line-height: 1.2;
+      color: #ffffff;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 2px solid rgba(218, 165, 32, 0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .meta-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 600;
+    }
+
+    .meta-value {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .meta-value a {
+      color: #daa520;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .meta-value a:hover {
+      color: #f4d03f;
+    }
+
+    .brief-content {
+      padding: 3rem;
+      background: #ffffff;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 3px solid #daa520;
+    }
+
+    .section-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #2d5016 0%, #4a7c2c 100%);
+      color: #ffffff;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #2d5016;
+      margin: 0;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+    }
+
+    .feature-list li {
+      padding: 0.875rem 0 0.875rem 2.5rem;
+      position: relative;
+      margin-bottom: 0.75rem;
+      color: #4a5568;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .feature-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 0.875rem;
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #2d5016 0%, #4a7c2c 100%);
+      color: #daa520;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .subsection-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #2d5016;
+      margin: 2rem 0 1rem;
+      padding-left: 1rem;
+      border-left: 4px solid #daa520;
+    }
+
+    .numbered-list {
+      counter-reset: feature-counter;
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+    }
+
+    .numbered-list li {
+      counter-increment: feature-counter;
+      padding: 0.875rem 0 0.875rem 3rem;
+      position: relative;
+      margin-bottom: 0.75rem;
+      color: #4a5568;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .numbered-list li::before {
+      content: counter(feature-counter);
+      position: absolute;
+      left: 0;
+      top: 0.875rem;
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #daa520 0%, #f4d03f 100%);
+      color: #2d5016;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.875rem;
+      line-height: 1;
+    }
+
+    .numbered-list li strong {
+      color: #2d5016;
+      font-weight: 600;
+    }
+
+    .design-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    .design-list li {
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      position: relative;
+      background: #f7fafc;
+      border-radius: 8px;
+      color: #4a5568;
+      font-size: 0.95rem;
+    }
+
+    .design-list li::before {
+      content: '◆';
+      position: absolute;
+      left: 1rem;
+      top: 0.75rem;
+      color: #daa520;
+      font-size: 0.875rem;
+    }
+
+    .table-container {
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+    }
+
+    thead {
+      background: linear-gradient(135deg, #2d5016 0%, #4a7c2c 100%);
+    }
+
+    th {
+      padding: 1rem 1.5rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #ffffff;
+    }
+
+    td {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #e2e8f0;
+      color: #4a5568;
+      font-size: 0.95rem;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background: #f7fafc;
+    }
+
+    .total-row {
+      background: #f7fafc;
+      font-weight: 700;
+      color: #2d5016;
+    }
+
+    .total-row td {
+      padding: 1.25rem 1.5rem;
+      font-size: 1.125rem;
+      border-top: 3px solid #daa520;
+    }
+
+    .note-box {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border-left: 4px solid #daa520;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      box-shadow: 0 2px 8px rgba(218, 165, 32, 0.1);
+    }
+
+    .note-box strong {
+      color: #92400e;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .note-box p {
+      margin: 0;
+      color: #78350f;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .payment-terms {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .payment-card {
+      background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      border: 2px solid #e2e8f0;
+      transition: all 0.3s ease;
+    }
+
+    .payment-card:hover {
+      border-color: #daa520;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(218, 165, 32, 0.15);
+    }
+
+    .payment-percentage {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #2d5016;
+      margin-bottom: 0.5rem;
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    .payment-description {
+      font-size: 0.875rem;
+      color: #4a5568;
+      line-height: 1.5;
+    }
+
+    .support-box {
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      margin: 1.5rem 0;
+      border: 2px solid #10b981;
+    }
+
+    .support-box h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.5rem;
+      color: #065f46;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .support-box p {
+      margin: 0;
+      color: #047857;
+      font-size: 1rem;
+    }
+
+    .developer-info {
+      background: linear-gradient(135deg, #2d5016 0%, #4a7c2c 100%);
+      color: #ffffff;
+      padding: 2.5rem 3rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .developer-info h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.75rem;
+      margin: 0 0 1rem 0;
+      color: #daa520;
+    }
+
+    .developer-info a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1.125rem;
+      font-weight: 500;
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: rgba(218, 165, 32, 0.2);
+      border-radius: 8px;
+      border: 2px solid #daa520;
+      transition: all 0.3s ease;
+    }
+
+    .developer-info a:hover {
+      background: #daa520;
+      color: #2d5016;
+      transform: translateY(-2px);
+    }
+
+    .divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, #daa520 50%, transparent 100%);
+      margin: 2.5rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .brief-wrapper {
+        padding: 1rem 0.5rem;
+      }
+
+      .brief-header {
+        padding: 2.5rem 1.5rem 2rem;
+      }
+
+      .brief-header h1 {
+        font-size: 1.75rem;
+      }
+
+      .header-meta {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .brief-content {
+        padding: 2rem 1.5rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .design-list {
+        grid-template-columns: 1fr;
+      }
+
+      .payment-terms {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="brief-wrapper">
+   <div class="brief-container"><!-- Header -->
+    <header class="brief-header">
+     <h1 id="project-title">PROJECT BRIEF — Web App for Precious</h1>
+     <div class="header-meta">
+      <div class="meta-item">
+       <div class="meta-label">
+        Prepared By
+       </div>
+       <div class="meta-value" id="prepared-by">
+        WizzyTechStar
+       </div>
+      </div>
+      <div class="meta-item">
+       <div class="meta-label">
+        Website
+       </div>
+       <div class="meta-value">
+        <a href="https://wizzytechstar.online" target="_blank" rel="noopener noreferrer" id="website">wizzytechstar.online</a>
+       </div>
+      </div>
+      <div class="meta-item">
+       <div class="meta-label">
+        Date
+       </div>
+       <div class="meta-value" id="date">
+        December 2025
+       </div>
+      </div>
+     </div>
+    </header><!-- Content -->
+    <main class="brief-content"><!-- Project Summary -->
+     <section class="section">
+      <div class="section-header">
+       <div class="section-number">
+        1
+       </div>
+       <h2 class="section-title">Project Summary</h2>
+      </div>
+      <ul class="feature-list">
+       <li>Register and log in</li>
+       <li>Access key features through a simple dashboard</li>
+       <li>Upload and interact with specific content</li>
+       <li>Receive notifications and updates</li>
+       <li>Allow admin to manage user activities from a structured backend</li>
+      </ul>
+     </section>
+     <div class="divider"></div><!-- Project Objectives -->
+     <section class="section">
+      <div class="section-header">
+       <div class="section-number">
+        2
+       </div>
+       <h2 class="section-title">Project Objectives</h2>
+      </div>
+      <ul class="feature-list">
+       <li>Build a functional app with a user-friendly UI/UX</li>
+       <li>Ensure a secure and scalable backend</li>
+       <li>Deliver a smooth, reliable user experience</li>
+       <li>Provide post-launch support</li>
+      </ul>
+     </section>
+     <div class="divider"></div><!-- Project Scope & Key Features -->
+     <section class="section">
+      <div class="section-header">
+       <div class="section-number">
+        3
+       </div>
+       <h2 class="section-title">Project Scope &amp; Key Features</h2>
+      </div>
+      <h3 class="subsection-title">Core Features:</h3>
+      <ol class="numbered-list">
+       <li><strong>User Authentication</strong> – Email/password sign-up, secure login</li>
+       <li><strong>User Dashboard</strong> – Quick access to key tools/features</li>
+       <li><strong>Content Upload / Data Handling</strong> – Users can upload/interact with content</li>
+       <li><strong>Notifications System</strong> – Alerts and updates</li>
+       <li><strong>Admin Panel (Web-Based)</strong> – Manage users, monitor uploads, update content</li>
+      </ol>
+      <h3 class="subsection-title">Design &amp; Development:</h3>
+      <ul class="design-list">
+       <li>Full UI/UX Design (Wireframes + Visual UI)</li>
+       <li>Frontend development</li>
+       <li>Backend/API development</li>
+       <li>Database setup</li>
+       <li>Testing</li>
+       <li>Deployment</li>
+      </ul>
+     </section>
+     <div class="divider"></div><!-- Project Timeline -->
+     <section class="section">
+      <div class="section-header">
+       <div class="section-number">
+        4
+       </div>
+       <h2 class="section-title">Project Timeline</h2>
+      </div>
+      <div class="table-container">
+       <table>
+        <thead>
+         <tr>
+          <th>Phase</th>
+          <th>Duration</th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>UI/UX Design</td>
+          <td>3 weeks</td>
+         </tr>
+         <tr>
+          <td>Development</td>
+          <td>4 weeks</td>
+         </tr>
+         <tr>
+          <td>Testing &amp; Bug Fixes</td>
+          <td>2 weeks</td>
+         </tr>
+         <tr>
+          <td>Deployment</td>
+          <td>1 week</td>
+         </tr>
+         <tr class="total-row">
+          <td>Total Estimated Timeline</td>
+          <td>10 weeks</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+      <div class="note-box"><strong>Note:</strong>
+       <p>The timeline above is an estimate based on the features currently stated in the project scope. Any additional requirements not included in the initial scope may result in extra development time and could also lead to a slight adjustment in the project cost, depending on the nature of the new requirements.</p>
+      </div>
+     </section>
+     <div class="divider"></div><!-- Project Cost Breakdown -->
+     <section class="section">
+      <div class="section-header">
+       <div class="section-number">
+        5
+       </div>
+       <h2 class="section-title">Project Cost Breakdown</h2>
+      </div>
+      <div class="table-container">
+       <table>
+        <thead>
+         <tr>
+          <th>Category</th>
+          <th>Cost (₦)</th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>UI/UX Design</td>
+          <td>₦400,000</td>
+         </tr>
+         <tr>
+          <td>Frontend Development</td>
+          <td>₦400,000</td>
+         </tr>
+         <tr>
+          <td>Backend Development</td>
+          <td>₦500,000</td>
+         </tr>
+         <tr class="total-row">
+          <td>Total Estimated Cost</td>
+          <td>₦1,300,000</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </section>
+     <div class="divider"></div><!-- Payment Terms -->
+     <section class="section">
+      <div class="section-header">
+       <div class="section-number">
+        6
+       </div>
+       <h2 class="section-title">Payment Terms</h2>
+      </div>
+      <div class="payment-terms">
+       <div class="payment-card">
+        <div class="payment-percentage">
+         50%
+        </div>
+        <div class="payment-description">
+         Deposit to kick off the project
+        </div>
+       </div>
+       <div class="payment-card">
+        <div class="payment-percentage">
+         30%
+        </div>
+        <div class="payment-description">
+         Upon completion of testing and approval
+        </div>
+       </div>
+       <div class="payment-card">
+        <div class="payment-percentage">
+         20%
+        </div>
+        <div class="payment-description">
+         Final balance before deployment
+        </div>
+       </div>
+      </div>
+     </section>
+     <div class="divider"></div><!-- Post-Launch Support -->
+     <section class="section">
+      <div class="section-header">
+       <div class="section-number">
+        7
+       </div>
+       <h2 class="section-title">Post-Launch Support</h2>
+      </div>
+      <div class="support-box">
+       <h3>1 Month Free Maintenance</h3>
+       <p>Bug fixes &amp; minor updates included</p>
+      </div>
+     </section>
+    </main><!-- Developer Information -->
+    <footer class="developer-info">
+     <h3>WizzyTechStar</h3><a href="https://wizzytechstar.online" target="_blank" rel="noopener noreferrer">wizzytechstar.online</a>
+    </footer>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      project_title: "PROJECT BRIEF — Web App for Precious",
+      prepared_by: "WizzyTechStar",
+      website: "wizzytechstar.online",
+      date: "December 2025",
+      background_color: "#2d5016",
+      surface_color: "#ffffff",
+      text_color: "#4a5568",
+      accent_color: "#daa520",
+      secondary_accent_color: "#f4d03f",
+      font_family: "Inter",
+      font_size: 16
+    };
+
+    async function onConfigChange(config) {
+      const baseFont = config.font_family || defaultConfig.font_family;
+      const baseFontStack = -apple-system, BlinkMacSystemFont, sans-serif;
+      const baseSize = config.font_size || defaultConfig.font_size;
+
+      // Update text content
+      document.getElementById('project-title').textContent = config.project_title || defaultConfig.project_title;
+      document.getElementById('prepared-by').textContent = config.prepared_by || defaultConfig.prepared_by;
+      
+      const websiteLink = document.getElementById('website');
+      websiteLink.textContent = config.website || defaultConfig.website;
+      websiteLink.href = https://${config.website || defaultConfig.website};
+      
+      document.getElementById('date').textContent = config.date || defaultConfig.date;
+
+      // Apply colors
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+      const secondaryAccentColor = config.secondary_accent_color || defaultConfig.secondary_accent_color;
+
+      document.body.style.color = textColor;
+      document.querySelector('.brief-container').style.background = surfaceColor;
+
+      const header = document.querySelector('.brief-header');
+      header.style.background = linear-gradient(135deg, ${backgroundColor} 0%, ${backgroundColor}dd 100%);
+
+      const sectionNumbers = document.querySelectorAll('.section-number');
+      sectionNumbers.forEach(num => {
+        num.style.background = linear-gradient(135deg, ${backgroundColor} 0%, ${backgroundColor}dd 100%);
+      });
+
+      const sectionHeaders = document.querySelectorAll('.section-header');
+      sectionHeaders.forEach(header => {
+        header.style.borderBottomColor = accentColor;
+      });
+
+      const featureListStyle = document.createElement('style');
+      featureListStyle.textContent = `
+        .feature-list li::before { 
+          background: linear-gradient(135deg, ${backgroundColor} 0%, ${backgroundColor}dd 100%) !important;
+          color: ${accentColor} !important;
+        }
+        .numbered-list li::before {
+          background: linear-gradient(135deg, ${accentColor} 0%, ${secondaryAccentColor} 100%) !important;
+          color: ${backgroundColor} !important;
+        }
+        .design-list li::before {
+          color: ${accentColor} !important;
+        }
+      `;
+      document.head.appendChild(featureListStyle);
+
+      const thead = document.querySelector('thead');
+      thead.style.background = linear-gradient(135deg, ${backgroundColor} 0%, ${backgroundColor}dd 100%);
+
+      const totalRows = document.querySelectorAll('.total-row td');
+      totalRows.forEach(td => {
+        td.style.borderTopColor = accentColor;
+        td.style.color = backgroundColor;
+      });
+
+      const developerInfo = document.querySelector('.developer-info');
+      developerInfo.style.background = linear-gradient(135deg, ${backgroundColor} 0%, ${backgroundColor}dd 100%);
+
+      const developerTitle = document.querySelector('.developer-info h3');
+      developerTitle.style.color = accentColor;
+
+      // Apply fonts
+      document.body.style.fontFamily = ${baseFont}, ${baseFontStack};
+
+      // Apply font sizes
+      document.body.style.fontSize = ${baseSize}px;
+      document.querySelector('.brief-header h1').style.fontSize = ${baseSize * 2.25}px;
+      document.querySelectorAll('.section-title').forEach(el => el.style.fontSize = ${baseSize * 1.75}px);
+      document.querySelectorAll('.subsection-title').forEach(el => el.style.fontSize = ${baseSize * 1.125}px);
+      document.querySelectorAll('.payment-percentage').forEach(el => el.style.fontSize = ${baseSize * 2.5}px);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => {
+                config.surface_color = value;
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.accent_color || defaultConfig.accent_color,
+              set: (value) => {
+                config.accent_color = value;
+                window.elementSdk.setConfig({ accent_color: value });
+              }
+            },
+            {
+              get: () => config.secondary_accent_color || defaultConfig.secondary_accent_color,
+              set: (value) => {
+                config.secondary_accent_color = value;
+                window.elementSdk.setConfig({ secondary_accent_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["project_title", config.project_title || defaultConfig.project_title],
+          ["prepared_by", config.prepared_by || defaultConfig.prepared_by],
+          ["website", config.website || defaultConfig.website],
+          ["date", config.date || defaultConfig.date]
+        ])
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a9c93cc51419e85',t:'MTc2NTAzMjQzNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
